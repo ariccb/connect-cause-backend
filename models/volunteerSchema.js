@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 const volunteerSchema = new mongoose.Schema({
     first_name: { type: String, required: true },
     last_name: { type: String, required: true },
+    // Aric working on this
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     created_at: {
@@ -29,6 +30,7 @@ const volunteerSchema = new mongoose.Schema({
                 "international-aid-relief",
             ],
         },
+        // add password (encrypted) as part of the schema - look up what package to install
     ],
 });
 
