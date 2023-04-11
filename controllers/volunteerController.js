@@ -96,6 +96,7 @@ export async function updateVolunteer(req, res) {
                 username,
                 first_name,
                 last_name,
+                password,
                 created_at,
                 updated_at: new Date().toISOString(),
             },
@@ -106,14 +107,7 @@ export async function updateVolunteer(req, res) {
         const updatedVolunteerId = updatedVolunteer._id;
         res.status(200).json({
             message: "Successfully updated a new volunteer.",
-            result: await Volunteer.findOne({ _id: updatedVolunteerId }).populate({
-                path: "sessions_played",
-                model: "game_sessions_collection",
-                populate: {
-                    path: "game",
-                    model: "games_collection",
-                },
-            }),
+            result: await Volunteer.findOne({ _id: updatedVolunteerId }),
         });
     } catch (error) {
         res.json({
