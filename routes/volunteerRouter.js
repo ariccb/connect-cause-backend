@@ -10,7 +10,7 @@ import {
 
 const router = express.Router();
 
-// route to this whole endpoint is "/users"
+// route to this whole endpoint is "/volunteers"
 router.get("/", getAllVolunteers);
 router.get("/:_id", getVolunteer);
 router.post("/", createVolunteer);
