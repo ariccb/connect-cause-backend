@@ -23,7 +23,7 @@ const volunteerSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Interest", // this needs to reference the MODEL NAME of the schema that you're referencing
-            required: true,
+            required: false,
         },
     ],
     about_me: { type: String, required: false },
@@ -32,7 +32,7 @@ const volunteerSchema = new mongoose.Schema({
         ref: "VolunteeringRecord", // this needs to reference the MODEL NAME of the schema that you're referencing
         required: false,
     },
-    profile_image: { type: Image, required: true },
+    profile_image: { type: String, required: false },
     linkedin_link: { type: String, required: false },
 });
 
