@@ -39,7 +39,7 @@ export const getVolunteer = async (req, res) => {
 export async function createVolunteer(req, res) {
     console.log(`Attempting to create new volunteer`);
 
-    const { email, username, first_name, last_name } = req.body;
+    const { first_name, last_name, username, email, password } = req.body;
 
     console.log(
         `Request body: \nemail:${email}\nusername:${username}\nfirst_name:${first_name}\nlast_name:${last_name}\n`
@@ -61,10 +61,11 @@ export async function createVolunteer(req, res) {
         } else {
             //create new volunteer if they don't have a login already
             const newVolunteer = await Volunteer.create({
-                email,
-                username,
                 first_name,
                 last_name,
+                username,
+                email,
+                password,
                 created_at: new Date().toISOString(),
             });
             const newVolunteerId = newVolunteer._id;
@@ -96,6 +97,7 @@ export async function updateVolunteer(req, res) {
                 username,
                 first_name,
                 last_name,
+                password,
                 created_at,
                 updated_at: new Date().toISOString(),
             },
@@ -106,14 +108,7 @@ export async function updateVolunteer(req, res) {
         const updatedVolunteerId = updatedVolunteer._id;
         res.status(200).json({
             message: "Successfully updated a new volunteer.",
-            result: await Volunteer.findOne({ _id: updatedVolunteerId }).populate({
-                path: "sessions_played",
-                model: "game_sessions_collection",
-                populate: {
-                    path: "game",
-                    model: "games_collection",
-                },
-            }),
+            result: await Volunteer.findOne({ _id: updatedVolunteerId }),
         });
     } catch (error) {
         res.json({
