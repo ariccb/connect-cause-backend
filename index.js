@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import volunteerRouter from "./routes/volunteerRouter.js";
+import authenticationRouter from "./routes/signup.js";
 
 //read the MongoDB credentials from .env file
 dotenv.config({
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
 
 // list of the routers i'm using
 app.use("/volunteers", volunteerRouter); // all the functionality to do with volunteers
+app.use("/authenticate", authenticationRouter);
 
 //port the server is listening on
 app.listen(PORT, () => {
