@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import volunteerRouter from "./routes/volunteerRouter.js";
+import companyRouter from "./routes/companyRouter.js";
 
 //read the MongoDB credentials from .env file
 dotenv.config({
