@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import volunteerRouter from "./routes/volunteerRouter.js";
 import authenticationRouter from "./routes/signup.js";
+import cors from "cors";
+import bodyParser from "body-parser";
 
 //read the MongoDB credentials from .env file
 dotenv.config({
@@ -23,6 +25,8 @@ const app = express();
 const PORT = process.env.PORT || 9000;
 
 app.use(express.json()); // this tells our express app that we expect to be receiving json values.
+app.use(bodyParser.json());
+app.use(cors());
 //---- example json value being passed with curl as a post request:
 // curl -d '{"a":"hello","b":"bye"}
 // app.use(express.urlencoded() // another option to tell express app that we expect to be receiving url encoded values.(which usually come from online forms)
