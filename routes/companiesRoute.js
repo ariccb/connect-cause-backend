@@ -5,7 +5,7 @@ import {
   getCompanyById,
   updateCompanyById,
   deleteCompanyById,
-} from "./companiesController.js";
+} from "../controllers/companiesController.js";
 
 const router = express.Router();
 
