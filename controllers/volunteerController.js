@@ -1,5 +1,6 @@
 import Volunteer from "../models/volunteerSchema.js";
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 const isValidId = mongoose.Types.ObjectId.isValid;
 
 export async function getAllVolunteers(req, res) {
@@ -36,57 +37,10 @@ export const getVolunteer = async (req, res) => {
     }
 };
 
-export async function createVolunteer(req, res) {
-    console.log(`Attempting to create new volunteer`);
-
-    const { first_name, last_name, username, email, password } = req.body;
-
-    console.log(
-        `Request body: \nemail:${email}\nusername:${username}\nfirst_name:${first_name}\nlast_name:${last_name}\n`
-    );
-    try {
-        const existingVolunteerEmail = await Volunteer.findOne({ email: email });
-        const existingVolunteerUsername = await Volunteer.findOne({ username: username });
-
-        if (existingVolunteerUsername) {
-            return res.status(403).json({
-                message:
-                    "Account already exists with that username. Please try again with a different one.",
-            }); //forbidden - volunteer exists already
-        } else if (existingVolunteerEmail) {
-            return res.status(403).json({
-                message:
-                    "Account already exists with that email. Please try again with a different one.",
-            }); //forbidden - volunteer exists already
-        } else {
-            //create new volunteer if they don't have a login already
-            const newVolunteer = await Volunteer.create({
-                first_name,
-                last_name,
-                username,
-                email,
-                password,
-                created_at: new Date().toISOString(),
-            });
-            const newVolunteerId = newVolunteer._id;
-
-            res.status(201).json({
-                message: "Successfully added a new volunteer.",
-                result: await Volunteer.findOne({ _id: newVolunteerId }),
-            });
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: "Something went wrong when trying to create new volunteer.",
-        });
-    }
-}
-
 export async function updateVolunteer(req, res) {
     console.log(`Trying to update a volunteer.`);
     const { _id } = req.params;
-    const { email, username, first_name, last_name, created_at } = req.body;
+    const { email, username, first_name, last_name, created_at, password } = req.body;
 
     console.log(`Attempting to update volunteer with _id: ${_id}`);
     try {
