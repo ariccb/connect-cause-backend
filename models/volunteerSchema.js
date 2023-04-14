@@ -49,6 +49,33 @@ const hash = await bcrypt.hash(volunteer.password, salt);
   } catch (error) {
     next(error);
   }
+=======
+    // will need to implement some authentication / encryption to the password field - need to look into that
+    password: { type: String, required: true },
+    created_at: {
+        type: Date,
+        default: new Date(),
+    },
+    updated_at: {
+        type: Date,
+        required: false,
+    },
+    interests: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Interest", // this needs to reference the MODEL NAME of the schema that you're referencing
+            required: false,
+        },
+    ],
+    about_me: { type: String, required: false },
+    volunteering_records: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "VolunteeringRecord", // this needs to reference the MODEL NAME of the schema that you're referencing
+        required: false,
+    },
+    profile_image: { type: String, required: false },
+    linkedin_link: { type: String, required: false },
+>>>>>>> 05dd4fa87ca325a67dc20e5aa73630e0c0e5ebae
 });
 
 volunteerSchema.methods.isValidPassword = async function (password) {
