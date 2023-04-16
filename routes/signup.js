@@ -1,12 +1,13 @@
 import express from "express";
-import { signupVolunteers } from "../controllers/signupSigninController.js";
+import { signUpVolunteer } from "../controllers/signup.js";
+import { signInVolunteer } from "../controllers/signin.js";
 
 const router = express.Router();
 
 // route to this whole endpoint is "/volunteers"
-router.post("/volunteer", signupVolunteers);
-router.get("/volunteer", signinVolunteers);
-router.post("/organization", signupOrganization);
-router.get("/organization", signupOrganization);
+router.post("/volunteer/signup", signUpVolunteer);
+router.get("/volunteer/signin", signInVolunteer);
+// router.post("/organization", signupOrganization);
+// router.get("/organization", signupOrganization);
 
 export default router;
