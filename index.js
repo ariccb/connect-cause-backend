@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import volunteerRouter from "./routes/volunteerRouter.js";
 import authenticationRouter from "./routes/signup.js";
 import bodyParser from "body-parser";
+import companyRouter from "./routes/companyRouter.js";
 
 //read the MongoDB credentials from .env file
 dotenv.config({

@@ -24,9 +24,16 @@ export async function signInVolunteer(req, res) {
         }
 
         // create a JWT token
+        // jwt token is a string that contains the payload and the signature of the token
+        // the payload is the data that we want to store in the token
+        // the signature is a hash of the token and a secret key
+        // the signature is used to verify the token
         const token = jwt.sign({ id: volunteer._id }, process.env.JWT_SECRET);
 
         // return the token as a response
+        // the token is stored in the browser's local storage
+        // the token is sent to the server in the Authorization header
+
         return res.status(200).json({
             message: `Successfully logged in ${volunteer.username}`,
             token: token,
