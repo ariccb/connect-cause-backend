@@ -38,6 +38,7 @@ export const getVolunteer = async (req, res) => {
 };
 
 export async function updateVolunteer(req, res) {
+    // need to limit this functionality to the logged-in user (using jwt token?)
     console.log(`Trying to update a volunteer.`);
     const { _id } = req.params;
     const { email, username, first_name, last_name, created_at, password } = req.body;
