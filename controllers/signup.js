@@ -16,6 +16,7 @@ export async function signUpVolunteer(req, res) {
                 message: "Account already exists with that email. Please try again with a different one.",
             }); //forbidden - volunteer exists already
         } else {
+            console.log("trying to create new volunteer");
             //create new volunteer if they don't have a login already
             const newVolunteer = await Volunteer.create({
                 first_name,
