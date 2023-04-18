@@ -27,16 +27,13 @@ export async function signUpVolunteer(req, res) {
                 created_at: new Date().toISOString(),
             });
             const newVolunteerId = newVolunteer._id;
-            console.log("before jwt");
             // create a JWT token
             const token = jwt.sign({ id: newVolunteer._id }, process.env.JWT_SECRET);
-            console.log(token);
             res.status(201).json({
                 message: "Successfully added a new volunteer.",
                 token: token,
                 result: await Volunteer.findOne({ _id: newVolunteerId }),
             });
-            console.log("after");
         }
     } catch (error) {
         console.log(error);
