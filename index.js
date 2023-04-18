@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import volunteerRouter from "./routes/volunteerRouter.js";
-import authenticationRouter from "./routes/signup.js";
+import authenticationRouter from "./routes/authenticationRouter.js";
 import bodyParser from "body-parser";
 // import companyRouter from "./routes/companyRouter.js";
 

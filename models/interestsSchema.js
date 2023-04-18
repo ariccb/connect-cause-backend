@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-/** this is the schema for the matched interests between organizations and volunteers.
+/** this is the schema for the matched interests between companys and volunteers.
  * Only website Admins should be able to add to this list.
  */
 

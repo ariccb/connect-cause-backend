@@ -1,5 +1,5 @@
 import express from "express";
-import { signUpVolunteer } from "../controllers/signup.js";
+import { signUpVolunteer, signUpCompany } from "../controllers/signup.js";
 import { signInVolunteer } from "../controllers/signin.js";
 
 const router = express.Router();
@@ -7,7 +7,7 @@ const router = express.Router();
 // route to this whole endpoint is "/volunteers"
 router.post("/signup/volunteer", signUpVolunteer);
 router.get("/signin/volunteer", signInVolunteer);
-// router.post("/signup/organization", signupOrganization);
-// router.get("/signin/organization", signupOrganization);
+router.post("/signup/company", signUpCompany);
+// router.get("/signin/company", signupCompany);
 
 export default router;
