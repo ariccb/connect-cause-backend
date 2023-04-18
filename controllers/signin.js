@@ -35,7 +35,7 @@ export async function signInVolunteer(req, res) {
         // the token is sent to the server in the Authorization header
 
         return res.status(200).json({
-            message: `Successfully logged in ${volunteer.username}`,
+            message: `Successfully logged in ${volunteer.firstName}, ${volunteer.lastName}`,
             token: token,
             response: volunteer,
         });

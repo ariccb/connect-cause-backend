@@ -41,7 +41,7 @@ export async function updateVolunteer(req, res) {
     // need to limit this functionality to the logged-in user (using jwt token?)
     console.log(`Trying to update a volunteer.`);
     const { _id } = req.params;
-    const { email, username, first_name, last_name, created_at, password } = req.body;
+    const { email, firstName, lastName, created_at, password } = req.body;
 
     console.log(`Attempting to update volunteer with _id: ${_id}`);
     try {
@@ -49,9 +49,8 @@ export async function updateVolunteer(req, res) {
             _id,
             {
                 email,
-                username,
-                first_name,
-                last_name,
+                firstName,
+                lastName,
                 password,
                 created_at,
                 updated_at: new Date().toISOString(),
