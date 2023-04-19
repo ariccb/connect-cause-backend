@@ -6,7 +6,7 @@ const router = express.Router();
 
 // route to this whole endpoint is "/volunteers"
 router.post("/signup/volunteer", signUpVolunteer);
-router.get("/signin/volunteer", signInVolunteer);
+router.post("/signin/volunteer", signInVolunteer);
 router.post("/signup/company", signUpCompany);
 // router.get("/signin/company", signupCompany);
 

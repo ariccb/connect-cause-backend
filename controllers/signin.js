@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import Volunteer from "../models/volunteerSchema.js";
 
 // login function
 export async function signInVolunteer(req, res) {
@@ -33,7 +34,7 @@ export async function signInVolunteer(req, res) {
         // return the token as a response
         // the token is stored in the browser's local storage
         // the token is sent to the server in the Authorization header
-
+        console.log("signin ran, this is the token:", token);
         return res.status(200).json({
             message: `Successfully logged in ${volunteer.firstName}, ${volunteer.lastName}`,
             token: token,

@@ -17,13 +17,15 @@ export async function signUpVolunteer(req, res) {
         } else {
             console.log("trying to create new volunteer");
             //create new volunteer if they don't have a login already
-            const newVolunteer = await Volunteer.create({
+            console.log(firstName, lastName, email, password);
+            let newVolunteer = await Volunteer.create({
                 firstName,
                 lastName,
                 email,
                 password, // hashing happens as a pre-hook on Volunteer.create(in the schema)
-                created_at: new Date().toISOString(),
+                // created_at: new Date().toISOString(),
             });
+            console.log(newVolunteer);
             const newVolunteerId = newVolunteer._id;
             // create a JWT token
             const token = jwt.sign({ id: newVolunteer._id }, process.env.JWT_SECRET);
