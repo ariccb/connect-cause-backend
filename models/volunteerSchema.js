@@ -27,14 +27,16 @@ const volunteerSchema = new mongoose.Schema({
         },
     ],
     about_me: { type: String, required: false },
-    volunteering_records: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "VolunteeringRecord", // this needs to reference the MODEL NAME of the schema that you're referencing
-        required: false,
-    },
-    profile_image: { type: String, required: false },
-    linkedin_link: { type: String, required: false },
-    past_volunteer: { type: String, required: false }, // add past_volunteer field as a string
+    volunteering_records: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "VolunteeringRecord", // this needs to reference the MODEL NAME of the schema that you're referencing
+            required: false,
+        },
+    ],
+    profileImage: { type: String, required: false },
+    linkedinLink: { type: String, required: false },
+    pastVolunteer: { type: Boolean, required: false }, // add past_volunteer field as a string
 });
 
 // this code hash the password before saving it to the database. this is a middleware function that will run before the save function is called.

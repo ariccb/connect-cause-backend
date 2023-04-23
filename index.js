@@ -36,7 +36,7 @@ app.get("/api", (req, res) => {
     res.send("You reached the home endpoint for ConnectCause!.\n");
 });
 
-// list of the routers i'm using
+// list of the Routes i'm using
 app.use("/api/volunteers", volunteerRouter); // all the functionality to do with volunteers
 app.use("/api/authenticate", authenticationRouter);
 
