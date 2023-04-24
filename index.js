@@ -40,7 +40,7 @@ app.get("/api", (req, res) => {
 app.use("/api/volunteers", volunteerRouter); // all the functionality to do with volunteers
 app.use("/api/authenticate", authenticationRouter);
 
-//port the server is listening on
+// Start the server listening on the specified port
 app.listen(PORT, () => {
     console.log(`The server is up and running on PORT: ${PORT}`);
     console.log(`Click here to view the main endpoint: http://localhost:${PORT}\n`);
