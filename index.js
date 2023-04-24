@@ -2,41 +2,43 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import volunteerRouter from "./routes/volunteerRouter.js";
-import companyRouter from "./routes/companyRouter.js";
 
 //read the MongoDB credentials from .env file
 dotenv.config({
-    path: "./auth/.env",
+    path: "./.env",
 });
 
 const connectionStr = process.env.MONGO_URL;
 
 async function main() {
-    await mongoose.connect(connectionStr);
+    try {
+        const db = await mongoose.connect(connectionStr);
+        console.log('Connected to MongoDB');
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+        process.exit(1); // exit the process with an error code
+    }
 }
+
+// Call the main function to connect to MongoDB
 main().catch((err) => console.log(err));
 
-//assigning the connection setup
-export const db = await mongoose.connect(connectionStr);
-
+// Create a new instance of the Express app
 const app = express();
 const PORT = process.env.PORT || 9000;
 
-app.use(express.json()); // this tells our express app that we expect to be receiving json values.
-//---- example json value being passed with curl as a post request:
-// curl -d '{"a":"hello","b":"bye"}
-// app.use(express.urlencoded() // another option to tell express app that we expect to be receiving url encoded values.(which usually come from online forms)
-//---- example urlencoded value being passed with curl as a post request:
-// curl =d "param1=value1&param2=value2" -X POST http://localhost:4444/aaa\?foo\=bar\&fred\=barney
+// Set up middleware to parse incoming requests as JSON
+app.use(express.json());
 
+// Set up a basic home route
 app.get("/", (req, res) => {
     res.send("You reached the home endpoint for ConnectCause!.\n");
 });
 
-// list of the routers i'm using
-app.use("/volunteers", volunteerRouter); // all the functionality to do with volunteers
+// Set up routes for the /volunteers endpoint using the volunteerRouter module
+app.use("/volunteers", volunteerRouter);
 
-//port the server is listening on
+// Start the server listening on the specified port
 app.listen(PORT, () => {
     console.log(`The server is up and running on PORT: ${PORT}`);
     console.log(`Click here to view the main endpoint: http://localhost:${PORT}\n`);
