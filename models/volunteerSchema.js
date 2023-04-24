@@ -34,13 +34,6 @@ const volunteerSchema = new mongoose.Schema({
     pastVolunteer: { type: Boolean, required: false }, // add past_volunteer field as a string
 });
 
-volunteerSchema.save((error) => {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log("Volunteer saved successfully!");
-    }
-});
 // this code hash the password before saving it to the database. this is a middleware function that will run before the save function is called.
 // this is a pre hook. this code will run before the save function is called.
 volunteerSchema.pre("save", async function (next) {

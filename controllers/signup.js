@@ -26,6 +26,7 @@ export async function signUpVolunteer(req, res) {
                 // created_at: new Date().toISOString(),
             });
             console.log(newVolunteer);
+            await newVolunteer.save();
             const newVolunteerId = newVolunteer._id;
             // create a JWT token
             const token = jwt.sign({ id: newVolunteer._id }, process.env.JWT_SECRET);
