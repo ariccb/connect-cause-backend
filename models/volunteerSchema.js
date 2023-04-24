@@ -17,6 +17,15 @@ const volunteerSchema = new mongoose.Schema({
   linkedin_link: { type: String, required: false }
 });
 
+newVolunteer.save((error) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Volunteer saved successfully!");
+  }
+});
+
+
 volunteerSchema.pre("save", async function (next) {
   const volunteer = this;
 
