@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 const volunteerSchema = new mongoose.Schema({
+    userType: { type: String, required: true, default: "Volunteer" },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
