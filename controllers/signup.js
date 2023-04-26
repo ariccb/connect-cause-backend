@@ -9,7 +9,6 @@ export async function signUpVolunteer(req, res) {
     console.log(`Request body: \nemail:${email}\nfirstName:${firstName}\nlastName:${lastName}\n`);
     try {
         const existingVolunteerByEmail = await Volunteer.findOne({ email: email });
-        console.log(`existingVolunteerByEmail`, existingVolunteerByEmail);
         if (existingVolunteerByEmail) {
             return res.status(400).json({
                 message: "Account already exists with that email. Please try again with a different one.",
@@ -17,7 +16,7 @@ export async function signUpVolunteer(req, res) {
         } else {
             console.log("trying to create new volunteer");
             //create new volunteer if they don't have a login already
-            console.log(firstName, lastName, email, password);
+
             let newVolunteer = await Volunteer.create({
                 firstName,
                 lastName,
