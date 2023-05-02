@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import volunteerRouter from "./routes/volunteerRouter.js";
 import authenticationRouter from "./routes/authenticationRouter.js";
 import bodyParser from "body-parser";
+import { loadInitialData } from "./models/loadInitialCategories.js";
 // import companyRouter from "./routes/companyRouter.js";
 
 //read the MongoDB credentials from .env file
@@ -37,8 +38,7 @@ app.get("/api", (req, res) => {
 });
 
 // list of the Routes i'm using
-app.use("/api/volunteers", volunteerRouter); // all the functionality to do with volunteers
-app.use("/api/authenticate", authenticationRouter);
+app.post("/api/l-i-d", loadInitialData);
 
 // Start the server listening on the specified port
 app.listen(PORT, () => {
