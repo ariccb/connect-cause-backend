@@ -41,7 +41,7 @@ export async function getOpportunity(req, res) {
 }
 
 export const createOpportunity = async (req, res) => {
-  const { name, description, location, startDate, endDate, companyId, modelType } = req.body;
+  const { name, description, location, startDate, endDate, companyId } = req.body;
 
   try {
     const companies = await Opportunity.create({
