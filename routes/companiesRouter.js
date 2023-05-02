@@ -15,14 +15,4 @@ router.put("/:id", updateCompanyById);
 // Delete a company by ID
 router.delete("/:id", deleteCompanyById);
 
-import {
-    getAllOpportunities,
-    getOpportunityById,
-    updateOpportunityById,
-    deleteOpportunityById,
-  } from "../controllers/opportunitiesController.js";
-  
-
-
-
 export default router;

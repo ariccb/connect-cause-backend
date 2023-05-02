@@ -1,0 +1,152 @@
+[
+    {
+        "categoryCode": "0012",
+        "charityType": "Advancement of Education",
+        "category": "Education in the arts"
+    },
+    {
+        "categoryCode": "0013",
+        "charityType": "Advancement of Education",
+        "category": "Educational organizations not elsewhere categorized"
+    },
+    {
+        "categoryCode": "0015",
+        "charityType": "Advancement of Education",
+        "category": "Foundations advancing education"
+    },
+    {
+        "categoryCode": "0014",
+        "charityType": "Advancement of Education",
+        "category": "Research"
+    },
+    {
+        "categoryCode": "0011",
+        "charityType": "Advancement of Education",
+        "category": "Support of schools and education"
+    },
+    {
+        "categoryCode": "0010",
+        "charityType": "Advancement of Education",
+        "category": "Teaching institutions"
+    },
+    {
+        "categoryCode": "0030",
+        "charityType": "Advancement of religion",
+        "category": "Christianity"
+    },
+    {
+        "categoryCode": "0080",
+        "charityType": "Advancement of religion",
+        "category": "Ecumenical and Inter-faith Organizations "
+    },
+    {
+        "categoryCode": "0090",
+        "charityType": "Advancement of religion",
+        "category": "Foundations advancing religions"
+    },
+    {
+        "categoryCode": "0040",
+        "charityType": "Advancement of religion",
+        "category": "Islam"
+    },
+    {
+        "categoryCode": "0050",
+        "charityType": "Advancement of religion",
+        "category": "Judaism"
+    },
+    {
+        "categoryCode": "0060",
+        "charityType": "Advancement of religion",
+        "category": "Other religions"
+    },
+    {
+        "categoryCode": "0070",
+        "charityType": "Advancement of religion",
+        "category": "Support of religion"
+    },
+    {
+        "categoryCode": "0175",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Agriculture"
+    },
+    {
+        "categoryCode": "0180",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Animal welfare"
+    },
+    {
+        "categoryCode": "0190",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Arts"
+    },
+    {
+        "categoryCode": "0160",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Community resource"
+    },
+    {
+        "categoryCode": "0140",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Complementary or alternative health care"
+    },
+    {
+        "categoryCode": "0100",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Core health care"
+    },
+    {
+        "categoryCode": "0170",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Environment"
+    },
+    {
+        "categoryCode": "0210",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Foundations"
+    },
+    {
+        "categoryCode": "0130",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Health care products"
+    },
+    {
+        "categoryCode": "0215",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Registered national arts services organizations (RNASO) "
+    },
+    {
+        "categoryCode": "0120",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Protective health care"
+    },
+    {
+        "categoryCode": "0200",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Public amenities"
+    },
+    {
+        "categoryCode": "0150",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Relief of the aged"
+    },
+    {
+        "categoryCode": "0110",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Supportive health care"
+    },
+    {
+        "categoryCode": "0155",
+        "charityType": "Other purposes beneficial to the community",
+        "category": "Upholding human rights"
+    },
+    {
+        "categoryCode": "0002",
+        "charityType": "Relief of poverty",
+        "category": "Foundations relieving poverty "
+    },
+    {
+        "categoryCode": "0001",
+        "charityType": "Relief of poverty",
+        "category": "Organizations relieving poverty"
+    }
+]
