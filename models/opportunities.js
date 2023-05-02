@@ -42,7 +42,8 @@ export async function getOpportunity(req, res) {
 
 export const createOpportunity = async (req, res) => {
   const { name, description, location, startDate, endDate } = req.body;
-  console.log(req.user.userType._id);
+  console.log(req.user.userType);
+  let companyId = req.user.userType;
 
   try {
     const companies = await Opportunity.create({
