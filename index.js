@@ -7,7 +7,8 @@ import userRouter from "./routes/userRouter.js";
 import volunteerRouter from "./routes/volunteerRouter.js";
 import companyRouter from "./routes/companyRouter.js";
 import authRouter from "./routes/authRouter.js";
-import bodyParser from "body-parser";
+import interestsRouter from "./routes/interestsRouter.js";
+import opportunityRouter from "./routes/opportunityRouter.js";
 import { loadInitialData } from "./models/loadInitialCategories.js";
 // import companyRouter from "./routes/companyRouter.js";
 
@@ -60,8 +61,9 @@ app.use("/api/user", userRouter); // all the functionality to do with volunteers
 app.use("/api/volunteer", volunteerRouter); // all the functionality to do with volunteers
 app.use("/api/company", companyRouter); // all the functionality to do with volunteers
 app.use("/api/authenticate", authRouter);
+app.use("/api/interests", interestsRouter);
 app.post("/api/l-i-d", loadInitialData);
-// app.use("api/opportunities", )
+app.use("/api/opportunities", opportunityRouter);
 
 // Start the server listening on the specified port
 app.listen(PORT, () => {
