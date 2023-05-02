@@ -1,83 +1,67 @@
 import jwt from "jsonwebtoken";
+import User from "../models/userSchema.js";
 import Volunteer from "../models/volunteerSchema.js";
+import Company from "../models/companySchema.js";
+import Admin from "../models/adminSchema.js";
 
-export async function signUpVolunteer(req, res) {
-    console.log(`Attempting to create new volunteer`);
-    console.log(req.body);
-    const { firstName, lastName, email, password } = req.body;
+export async function signup(req, res) {
+  console.log(`Attempting to create new user`);
+  const { email, password, modelType } = req.body;
 
-    console.log(`Request body: \nemail:${email}\nfirstName:${firstName}\nlastName:${lastName}\n`);
-    try {
-        const existingVolunteerByEmail = await Volunteer.findOne({ email: email });
-        if (existingVolunteerByEmail) {
-            return res.status(400).json({
-                message: "Account already exists with that email. Please try again with a different one.",
-            }); //forbidden - volunteer exists already
-        } else {
-            console.log("trying to create new volunteer");
-            //create new volunteer if they don't have a login already
+  console.log(`Request body:  \nemail:${email},\npassword:${password},\nmodelType:${modelType},`);
+  try {
+    const existingUserByEmail = await User.findOne({ email: email });
+    if (existingUserByEmail) {
+      return res.status(400).json({
+        message: "Account already exists with that email. Please try again with a different one.",
+      }); //forbidden - user exists already
+    } else {
+      let userTypeId;
+      //create new user if they don't have a login already
+      if (modelType == "Company") {
+        let newCompany = await Company.create({});
+        console.log(newCompany);
+        userTypeId = newCompany._id;
+      } else if (modelType == "Volunteer") {
+        let newVolunteer = await Volunteer.create({});
+        console.log(newVolunteer);
+        userTypeId = newVolunteer._id;
+      } else if (modelType == "Admin") {
+        let newVolunteer = await Admin.create({});
+        console.log(newVolunteer);
+        userTypeId = newVolunteer._id;
+      }
 
-            let newVolunteer = await Volunteer.create({
-                firstName,
-                lastName,
-                email,
-                password, // hashing happens as a pre-hook on Volunteer.create(in the schema)
-                // created_at: new Date().toISOString(),
-            });
-            console.log(newVolunteer);
-            await newVolunteer.save();
-            const newVolunteerId = newVolunteer._id;
-            // create a JWT token
-            const token = jwt.sign({ id: newVolunteer._id }, process.env.JWT_SECRET);
-            res.status(201).json({
-                message: "Successfully added a new volunteer.",
-                token: token,
-                result: await Volunteer.findOne({ _id: newVolunteerId }),
-            });
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: error,
-        });
+      console.log("trying to create new user");
+      let newUser = await User.create({
+        email: email,
+        password: password, // hashing happens as a pre-hook on User.create(in the schema)
+        userType: userTypeId,
+        modelType: modelType || "Volunteer",
+        // created_at: new Date().toISOString(),
+      });
+      console.log(newUser);
+      //   const user = await User.findOne({ email });
+      //   console.log(user);
+
+      const payload = {
+        _id: newUser._id,
+        userType: newUser.modelType,
+        // userType: user.userType,
+      };
+      const token = jwt.sign(payload, process.env.JWT_SECRET);
+      // create a JWT token
+      res.cookie("authToken", token);
+      res.status(201).json({
+        message: "Successfully added a new user.",
+        token: token,
+        result: await User.findOne({ _id: newUser._id }),
+      });
     }
-}
-
-export async function signUpCompany(req, res) {
-    console.log(`Attempting to create new company`);
-    console.log(req.body);
-    const { firstName, lastName, email, password } = req.body;
-
-    console.log(`Request body: \nemail:${email}\nfirstName:${firstName}\nlastName:${lastName}\n`);
-    try {
-        const existingCompanyByEmail = await Company.findOne({ email: email });
-        console.log(`existingCompanyByEmail`, existingCompanyByEmail);
-        if (existingCompanyByEmail) {
-            return res.status(400).json({
-                message: "Account already exists with that email. Please try again with a different one.",
-            }); //forbidden - company exists already
-        } else {
-            console.log("trying to create new company");
-            //create new company if they don't have a login already
-            const newCompany = await Company.create({
-                companyName,
-                email,
-                password, // hashing happens as a pre-hook on Company.create(in the schema)
-                created_at: new Date().toISOString(),
-            });
-            const newCompanyId = newCompany._id;
-            // create a JWT token
-            const token = jwt.sign({ id: newCompany._id }, process.env.JWT_SECRET);
-            res.status(201).json({
-                message: "Successfully added a new company.",
-                token: token,
-                result: await Company.findOne({ _id: newCompanyId }),
-            });
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: error,
-        });
-    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: error,
+    });
+  }
 }
