@@ -1,4 +1,9 @@
 import express from "express";
+
+import Volunteer from "../models/volunteerSchema.js";
+import Company from "../models/companySchema.js";
+import Admin from "../models/adminSchema.js";
+import mongoose from "mongoose";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import { verifyPassword } from "../models/userSchema.js";
@@ -24,6 +29,18 @@ passport.use(
   )
 );
 
+const getUserDetails = async (userModelType, _id) => {
+  console.log("Attempting to GET details using the logged in userType");
+
+  const userModel = mongoose.model(userModelType.toLowerCase());
+  const retrievedUser = await userModel.findById(_id);
+  if (retrievedUser == null) {
+    return console.log(`Couldn't find a user with id: ${_id}`);
+  } else {
+    return retrievedUser;
+  }
+};
+
 passport.serializeUser(function (user, cb) {
   console.log("serialized");
   process.nextTick(function () {
@@ -40,7 +57,14 @@ passport.deserializeUser(function (user, cb) {
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
   console.log("authenticated", req.user);
-  res.send(req.user);
+  console.log(req.user);
+
+  const userTypeDetails = getUserDetails(req.user.modelType, req.user.userType);
+  console.log();
+  res.send({
+    userTypeDetails: userTypeDetails,
+    reqUser: req.user,
+  });
 });
 
 router.post("/logout", (req, res) => {
@@ -50,6 +74,14 @@ router.post("/logout", (req, res) => {
 });
 
 router.post("/signup", signup);
+
+router.get("/", (req, res) => {
+  //artificially slowing down this request to see loading screen
+  setTimeout(() => {
+    if (req.user) res.send(req.user);
+    else res.sendStatus(401);
+  }, 2000);
+});
 
 router.get("/", (req, res) => {
   //artificially slowing down this request to see loading screen
