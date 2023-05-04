@@ -1,6 +1,5 @@
 import initialData from "./charityCategories.json" assert { type: "json" };
 import { createCharityCategory } from "./charityCategorySchema.js";
-import { signup } from "../controllers/signup.js";
 import User from "./userSchema.js";
 import Admin from "./adminSchema.js";
 
