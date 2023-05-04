@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     refPath: "modelType", // this lets us reference two separate schema types from one variable, "userTypes"
     required: false,
   },
-  modelType: { type: String, enum: ["Volunteer", "Company", "Admin"], required: true }, //the model types allowed for userTypes to reference
+  modelType: { type: String, enum: ["volunteer", "company", "admin"], required: true }, //the model types allowed for userTypes to reference
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: null },
 });

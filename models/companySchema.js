@@ -40,6 +40,6 @@ const companySchema = new mongoose.Schema({
   updated_at: { type: Date, default: null },
 });
 
-const Company = mongoose.model("Company", companySchema);
+const Company = mongoose.model("company", companySchema);
 
 export default Company;
